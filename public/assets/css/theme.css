@@ -149,3 +149,7 @@ footer {
 p.copyright {
 	margin: 15px 0 0;
 }
+
+.btn {
+	font-size: 18px;
+}

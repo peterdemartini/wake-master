@@ -26,6 +26,7 @@ module.exports = function(app){
     app.set('view engine', 'html');
 
     app.locals.app = config.app;
+    app.locals.appjson = JSON.stringify(config.app);
 
     // Enable JSONP
     app.enable('jsonp callback');

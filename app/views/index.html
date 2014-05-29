@@ -20,6 +20,11 @@
     <!-- Add custom CSS here -->
     <link href="/assets/css/theme.css" rel="stylesheet">
 
+
+    <script>
+        window.user = {{ user|safe || '""' }};
+        window.app = {{ appjson|safe }};
+    </script>
 </head>
 
 <body>
@@ -40,7 +45,7 @@
             <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#features">Features</a>
+                        <a href="/#!instructions">Instructions</a>
                     </li>
                     <li>
                         <a href="/login">Login</a>
@@ -52,25 +57,8 @@
         <!-- /.container -->
     </nav>
 
-    <div class="intro-header">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>{{ app.name }}</h1>
-                        <hr class="intro-divider">
-                        <h3>{{ app.description }}</h3>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
+    <div class="content" data-ng-view>
     </div>
-    <!-- /.intro-header -->
 
     <footer>
         <div class="container">
@@ -82,7 +70,7 @@
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
-                            <a href="#features">Features</a>
+                            <a href="#instructions">Instructions</a>
                         </li>
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
@@ -99,6 +87,21 @@
     <!-- JavaScript -->
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular-route/angular-route.js"></script>
+    <script src="/lib/angular-ui-utils/ui-utils.min.js"></script>
+
+    <script src="/app/app.js"></script>
+    <script src="/app/config.js"></script>
+    <script src="/app/routes.js"></script>
+
+    <script src="/app/global.js"></script>
+
+    <script src="/app/controllers/index.js"></script>
+    <script src="/app/controllers/instructions.js"></script>
+
+    <script src="/app/init.js"></script>
 
 </body>
 
