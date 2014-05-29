@@ -4,6 +4,7 @@ var express = require('express'),
     compression = require('compression'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
+    morgan = require('morgan'),
     config = require('./config'),
     consolidate = require('consolidate');
 
@@ -55,6 +56,6 @@ module.exports = function(app){
     app.set('views', views);
 
     if (process.env.NODE_ENV === 'development') {
-        app.use(express.logger('dev'));
+        app.use(morgan({ format : 'dev' }));
     }
 };
