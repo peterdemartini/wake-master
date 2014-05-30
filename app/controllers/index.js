@@ -1,5 +1,8 @@
 'use strict';
 
 exports.index = function(req, res){
-    res.render('index.html');
+    console.log(req.user);
+    res.render('index.html', {
+        user : req.user
+    });
 };

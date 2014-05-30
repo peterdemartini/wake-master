@@ -9,6 +9,9 @@ angular.module('main').config(['$routeProvider',
             .when('/instructions', {
                 templateUrl: '/views/instructions.html'
             })
+            .when('/login', {
+                templateUrl: '/views/login.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });

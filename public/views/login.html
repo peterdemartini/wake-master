@@ -1,0 +1,82 @@
+<div ng-controller="LoginCtrl">
+    <div class="intro-header">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message simple-message">
+                        <h1>Login</h1>
+                        <hr class="intro-divider">
+                        <h3>Authenticate with:</h3>
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="/auth/twitter" class="btn btn-default btn-lg">
+                                    <i class="fa fa-twitter fa-fw"></i>
+                                    <span class="network-name">Twitter</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/auth/github" class="btn btn-default btn-lg">
+                                    <i class="fa fa-github fa-fw"></i>
+                                    <span class="network-name">Github</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/auth/facebook" class="btn btn-default btn-lg">
+                                    <i class="fa fa-facebook fa-fw"></i>
+                                    <span class="network-name">Facebook</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <h3>~ or ~</h3>
+                        <div class="row">
+                            <div class="btn-group">
+                                <button type="button" ng-click="selectLoginType('login')" ng-class="{'active' : type === 'login'}" class="btn btn-default">Login</button>
+                                <button type="button" ng-click="selectLoginType('signup')" ng-class="{'active' : type === 'signup'}" class="btn btn-default">Signup</button>
+                            </div>
+                        </div>
+                        <form role="form" ng-show="type === 'signup'" class="col-lg-6 col-lg-offset-3" ng-submit="localSignup()">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" ng-model="signup.name" id="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="username" class="form-control" ng-model="signup.username" id="username" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" ng-model="signup.email" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" ng-model="signup.password" id="password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input type="password" class="form-control" ng-model="signup.confirm_password" id="confirm_password" placeholder="Confirm Password">
+                            </div>
+                            <button type="submit" class="btn btn-default">Signup</button>
+                        </form>
+                        <form role="form" ng-show="type === 'login'" class="col-lg-6 col-lg-offset-3" ng-submit="localLogin()">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" ng-model="login.email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" ng-model="login.password" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-default">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+</div>

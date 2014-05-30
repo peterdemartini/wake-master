@@ -3,12 +3,16 @@
 var express = require('express'),
     compression = require('compression'),
     cookieParser = require('cookie-parser'),
+    session = require('express-session'),
     bodyParser = require('body-parser'),
+    flash = require('connect-flash'),
     morgan = require('morgan'),
     config = require('./config'),
+    mongoStore = require('mean-connect-mongo')(session),
+    expressValidator = require('express-validator'),
     consolidate = require('consolidate');
 
-module.exports = function(app){
+module.exports = function(app, db, passport){
     // Should be placed before express.static
     // To ensure that all assets and data are compressed (utilize bandwidth)
     app.use(compression({
@@ -40,16 +44,22 @@ module.exports = function(app){
     app.use(bodyParser.urlencoded());
     app.use(bodyParser.json());
 
-    /*
+    app.use(expressValidator());
+
+    app.use(flash());
+
+    // Passport
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     // Express/Mongo Session Storage
-    app.use(express.session({
+    app.use(session({
         secret: config.sessionSecret,
         store: new mongoStore({
             db: db.connection.db,
             collection: config.sessionCollection
         })
     }));
-    */
 
     app.use(express.static(config.root_dir + 'public/'));
 

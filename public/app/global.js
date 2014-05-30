@@ -11,8 +11,6 @@ angular.module('main.system').factory('Global', [
             app : window.app || false
         };
 
-        console.log(obj);
-
         return obj._data;
     }
 
