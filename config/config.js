@@ -48,8 +48,8 @@ var env = {
             callbackURL: 'http://wake-master.herokuapp.com/auth/twitter/callback'
         },
         github: {
-            clientID: 'APP_ID',
-            clientSecret: 'APP_SECRET',
+            clientID: 'f11807dbbe49cfc2b78f',
+            clientSecret: '273051fb3788c6061775d30934fb0140154592a5',
             callbackURL: 'http://wake-master.herokuapp.com/auth/github/callback'
         }
     }
