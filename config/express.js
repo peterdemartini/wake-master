@@ -48,10 +48,6 @@ module.exports = function(app, db, passport){
 
     app.use(flash());
 
-    // Passport
-    app.use(passport.initialize());
-    app.use(passport.session());
-
     // Express/Mongo Session Storage
     app.use(session({
         secret: config.sessionSecret,
@@ -60,6 +56,10 @@ module.exports = function(app, db, passport){
             collection: config.sessionCollection
         })
     }));
+
+    // Passport
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     app.use(express.static(config.root_dir + 'public/'));
 

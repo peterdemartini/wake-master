@@ -12,7 +12,8 @@ var config = {
         description : 'An #IoT Alarm Clock powered by Skynet.im and Node.js'
     },
     port : process.env.PORT || 3000,
-    sessionSecret : 'CHEESEBURGERSKILLPEOPLE123'
+    sessionSecret : 'CHEESEBURGERSDONTKILL',
+    sessionCollection : 'sessions'
 };
 
 var env = {
@@ -29,8 +30,8 @@ var env = {
             callbackURL: 'http://localhost:' + config.port + '/auth/twitter/callback'
         },
         github: {
-            clientID: 'APP_ID',
-            clientSecret: 'APP_SECRET',
+            clientID: '8e43b940c7ef800b4f49',
+            clientSecret: 'b69d4e4ad46b5ad4cc1962e915199d11dba44e7b',
             callbackURL: 'http://localhost:' + config.port + '/auth/github/callback'
         }
     },

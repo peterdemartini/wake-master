@@ -36,37 +36,39 @@
                                 <button type="button" ng-click="selectLoginType('signup')" ng-class="{'active' : type === 'signup'}" class="btn btn-default">Signup</button>
                             </div>
                         </div>
-                        <form role="form" ng-show="type === 'signup'" class="col-lg-6 col-lg-offset-3" ng-submit="localSignup()">
+                        <form role="form" ng-show="type === 'signup'" class="col-lg-6 col-lg-offset-3" ng-submit="register()">
+                            <div class="alert alert-danger" ng-show="signupError">{{ signupError }}</div>
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" ng-model="signup.name" id="name" placeholder="Name">
+                                <input type="text" required required class="form-control" ng-model="signupUser.name" id="name" placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input type="username" class="form-control" ng-model="signup.username" id="username" placeholder="Username">
+                                <input type="username" required class="form-control" ng-model="signupUser.username" id="username" placeholder="Username">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" ng-model="signup.email" id="email" placeholder="Email">
+                                <input type="email" required class="form-control" ng-model="signupUser.email" id="email" placeholder="Email">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" ng-model="signup.password" id="password" placeholder="Password">
+                                <input type="password" required class="form-control" ng-model="signupUser.password" id="password" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <label for="confirm_password">Confirm Password</label>
-                                <input type="password" class="form-control" ng-model="signup.confirm_password" id="confirm_password" placeholder="Confirm Password">
+                                <input type="password" required class="form-control" ng-model="signupUser.confirm_password" id="confirm_password" placeholder="Confirm Password">
                             </div>
                             <button type="submit" class="btn btn-default">Signup</button>
                         </form>
-                        <form role="form" ng-show="type === 'login'" class="col-lg-6 col-lg-offset-3" ng-submit="localLogin()">
+                        <form role="form" ng-show="type === 'login'" class="col-lg-6 col-lg-offset-3" ng-submit="login()">
+                            <div class="alert alert-danger" ng-show="loginError">{{ loginError }}</div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" ng-model="login.email" placeholder="Email">
+                                <input type="email" required class="form-control" id="email" ng-model="loginUser.email" placeholder="Email">
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" ng-model="login.password" placeholder="Password">
+                                <input type="password" required class="form-control" id="password" ng-model="loginUser.password" placeholder="Password">
                             </div>
                             <button type="submit" class="btn btn-default">Login</button>
                         </form>

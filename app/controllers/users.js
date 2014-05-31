@@ -44,7 +44,7 @@ exports.session = function(req, res) {
 exports.create = function(req, res, next) {
     var user = new User(req.body);
 
-    user.provider = 'local';
+    user.login_source = 'local';
 
     // because we set our user.provider to local our models/user.js validation will always be true
     req.assert('name', 'You must enter a name').notEmpty();

@@ -22,7 +22,6 @@
 
 
     <script>
-        window.user = {{ user|safe || '""' }};
         window.app = {{ appjson|safe }};
     </script>
 </head>
@@ -47,8 +46,18 @@
                     <li>
                         <a href="/#!/instructions">Instructions</a>
                     </li>
-                    <li>
-                        <a href="/#!/login">Login</a>
+                    {% if user %}
+                        <li>
+                            <a href="/#!/account">Account</a>
+                        </li>
+                        <li>
+                            <a href="/logout">Logout</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/#!/login">Login</a>
+                        </li>
+                    {% endif %}
                     </li>
                 </ul>
             </div>

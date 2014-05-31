@@ -65,10 +65,10 @@ var UserSchema = new Schema({
 // Set virtual password
 UserSchema
 .virtual('password')
-.set(function(pwd) {
-    this._password = pwd;
+.set(function(password) {
+    this._password = password;
     this.salt = this.createSalt();
-    this.password_hash = this.hashPassword(pwd);
+    this.password_hash = this.hashPassword(password);
 })
 .get(function() {
     return this._password;
@@ -91,8 +91,8 @@ UserSchema.methods = {
         var salt = new Buffer(this.salt, 'base64');
         return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
     },
-    authenticate: function(plainText) {
-        return this.hashPassword(plainText) === this.hashed_password;
+    authenticate: function(password) {
+        return this.hashPassword(password) === this.password_hash;
     }
 };
 

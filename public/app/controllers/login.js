@@ -1,35 +1,62 @@
 'use strict';
 
-angular.module('main.users').controller('LoginCtrl', ['$scope', '$routeParams', '$http', '$location', 'Global',
-    function ($scope, $routeParams, $http, $location, Global) {
-        $scope.global = Global;
+angular.module('main.users')
+    .controller('LoginCtrl', ['$scope', '$routeParams', '$http', '$location', 'Global',
+        function ($scope, $routeParams, $http, $location, Global) {
+            $scope.global = Global;
 
-        $scope.type = 'login';
+            $scope.type = 'login';
 
-        $scope.selectLoginType = function(type){
-            $scope.type = type;
-        };
+            $scope.selectLoginType = function (type) {
+                $scope.type = type;
+            };
 
-        $scope.localLogin = function(){
-            $http.post('/login',
-                $scope.login)
-                .success(function(){
-                    $location.path('/');
+            $scope.loginUser = {};
+
+            $scope.login = function () {
+                $http.post('/login', {
+                    email: $scope.loginUser.email,
+                    password: $scope.loginUser.password
                 })
-                .error(function(err){
-                    console.log('Error logging in', err);
-                });
-        };
+                    .success(function (response) {
+                        // authentication OK
+                        $scope.loginError = 0;
+                        if (response.redirect) {
+                            if (window.location.href === response.redirect) {
+                                //This is so an admin user will get full admin page
+                                window.location.reload();
+                            } else {
+                                window.location = response.redirect;
+                            }
+                        } else {
+                            $location.url('/');
+                        }
+                    })
+                    .error(function () {
+                        $scope.loginerror = 'Authentication failed.';
+                    });
+            };
 
-        $scope.localSignup = function(){
-            $http.post('/register',
-                $scope.signup)
-                .success(function(){
-                    $location.path('/');
+            $scope.signupUser = {};
+
+            $scope.register = function() {
+                $scope.usernameError = null;
+                $scope.signupError = null;
+                $http.post('/register', {
+                    email: $scope.signupUser.email,
+                    password: $scope.signupUser.password,
+                    confirm_password: $scope.signupUser.confirm_password,
+                    username: $scope.signupUser.username,
+                    name: $scope.signupUser.name
                 })
-                .error(function(err){
-                    console.log('Error signing up', err);
-                });
-        };
-    }
-]);
+                    .success(function() {
+                        // authentication OK
+                        $scope.signupError = 0;
+                        $location.url('/');
+                    })
+                    .error(function(error) {
+                        $scope.signupError = error;
+                    });
+            };
+        }
+    ]);
