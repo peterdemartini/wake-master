@@ -6,8 +6,6 @@ angular.module('main.system').factory('Global', [
         var obj = this;
 
         obj._data = {
-            user: window.user || false,
-            authenticated: !! window.user,
             app : window.app || false
         };
 

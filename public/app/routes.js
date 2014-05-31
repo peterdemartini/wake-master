@@ -9,6 +9,15 @@ angular.module('main').config(['$routeProvider',
             .when('/instructions', {
                 templateUrl: '/views/instructions.html'
             })
+            .when('/grades', {
+                templateUrl: '/views/grades/index.html'
+            })
+            .when('/dashboard', {
+                templateUrl: '/views/dashboard.html'
+            })
+            .when('/alarm', {
+                templateUrl: '/views/alarm/index.html'
+            })
             .when('/login', {
                 templateUrl: '/views/login.html'
             })
