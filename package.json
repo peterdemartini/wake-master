@@ -51,7 +51,8 @@
     "connect-mongo": "~0.4.1",
     "express-session": "~1.2.1",
     "mean-connect-mongo": "~0.4.3",
-    "connect-flash": "~0.1.1"
+    "connect-flash": "~0.1.1",
+    "moment": "~2.6.0"
   },
   "engines": {
     "node": "0.10.x"

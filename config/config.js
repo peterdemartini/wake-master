@@ -13,7 +13,16 @@ var config = {
     },
     port : process.env.PORT || 3000,
     sessionSecret : 'CHEESEBURGERSDONTKILL',
-    sessionCollection : 'sessions'
+    sessionCollection : 'sessions',
+    grades : {
+        A : 'You are the best!',
+        B : 'Oh boy! Decent job.',
+        C : 'Well, not bad... Better luck next time.',
+        D : 'Ha, why did you even try?',
+        F : 'You failed. You wish you were cool.',
+        I : 'Your grade is incomplete',
+        U : 'Did you cheat?'
+    }
 };
 
 var env = {
