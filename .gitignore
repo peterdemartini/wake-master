@@ -29,3 +29,6 @@ public/lib
 .bower-cache
 .bower-registry
 .bower-tmp
+
+# Environment variables
+env.json

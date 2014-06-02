@@ -1,8 +1,15 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash'),
+    fs = require('fs');
 
 var root_dir = __dirname + '/../';
+
+var path = root_dir + 'env.json';
+if(fs.existsSync(path)){
+    var envVars = require(path);
+    process.env = _.extend(process.env, envVars);
+}
 
 var config = {
     root_dir : root_dir,
@@ -39,8 +46,8 @@ var env = {
             callbackURL: 'http://localhost:' + config.port + '/auth/twitter/callback'
         },
         github: {
-            clientID: '8e43b940c7ef800b4f49',
-            clientSecret: 'b69d4e4ad46b5ad4cc1962e915199d11dba44e7b',
+            clientID: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_SECRET,
             callbackURL: 'http://localhost:' + config.port + '/auth/github/callback'
         }
     },
@@ -49,17 +56,17 @@ var env = {
         facebook: {
             clientID: 'APP_ID',
             clientSecret: 'APP_SECRET',
-            callbackURL: 'http://wake-master.herokuapp.com/auth/facebook/callback'
+            callbackURL: 'http://wakemaster.io/auth/facebook/callback'
         },
         twitter: {
             clientID: 'CONSUMER_KEY',
             clientSecret: 'CONSUMER_SECRET',
-            callbackURL: 'http://wake-master.herokuapp.com/auth/twitter/callback'
+            callbackURL: 'http://wakemaster.io/auth/twitter/callback'
         },
         github: {
-            clientID: 'f11807dbbe49cfc2b78f',
-            clientSecret: '273051fb3788c6061775d30934fb0140154592a5',
-            callbackURL: 'http://wake-master.herokuapp.com/auth/github/callback'
+            clientID: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_KEY,
+            callbackURL: 'http://wakemaster.io/auth/github/callback'
         }
     }
 };

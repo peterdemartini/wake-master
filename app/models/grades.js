@@ -42,6 +42,10 @@ var GradeSchema = new Schema({
         type : Date,
         required : true,
         default : Date.now
+    },
+    user: {
+        type: Schema.ObjectId,
+        ref: 'User'
     }
 });
 
