@@ -65,7 +65,7 @@ var env = {
         },
         github: {
             clientID: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_KEY,
+            clientSecret: process.env.GITHUB_SECRET,
             callbackURL: 'http://wakemaster.io/auth/github/callback'
         }
     }
