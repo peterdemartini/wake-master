@@ -36,13 +36,13 @@ var env = {
     development : {
 		db: 'mongodb://localhost/wake-master-dev',
         facebook: {
-            clientID: 'APP_ID',
-            clientSecret: 'APP_SECRET',
+            clientID: process.env.FACEBOOK_ID,
+            clientSecret: process.env.FACEBOOK_SECRET,
             callbackURL: 'http://localhost:' + config.port + '/auth/facebook/callback'
         },
         twitter: {
-            clientID: 'CONSUMER_KEY',
-            clientSecret: 'CONSUMER_SECRET',
+            clientID: process.env.TWITTER_ID,
+            clientSecret: process.env.TWITTER_SECRET,
             callbackURL: 'http://localhost:' + config.port + '/auth/twitter/callback'
         },
         github: {
@@ -54,13 +54,13 @@ var env = {
     production : {
     	db: process.env.MONGOHQ_URL || 'mongodb://localhost/wake-master',
         facebook: {
-            clientID: 'APP_ID',
-            clientSecret: 'APP_SECRET',
+            clientID: process.env.FACEBOOK_ID,
+            clientSecret: process.env.FACEBOOK_SECRET,
             callbackURL: 'http://wakemaster.io/auth/facebook/callback'
         },
         twitter: {
-            clientID: 'CONSUMER_KEY',
-            clientSecret: 'CONSUMER_SECRET',
+            clientID: process.env.TWITTER_ID,
+            clientSecret: process.env.TWITTER_SECRET,
             callbackURL: 'http://wakemaster.io/auth/twitter/callback'
         },
         github: {
