@@ -4,8 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Grade = mongoose.model('Grade'),
-    _ = require('lodash');
+    Grade = mongoose.model('Grade');
 
 
 exports.grade = function(req, res, next, id) {
@@ -32,22 +31,6 @@ exports.create = function(req, res){
     });
 };
 
-
-exports.edit = function(req, res){
-    var grade = req.grade;
-
-    grade = _.extend(grade, req.body);
-
-    grade.save(function(err){
-        if(err){
-            return res.status(400).jsonp({
-                error : err.errors,
-                msg : 'Unable to edit grade'
-            });
-        }
-        res.jsonp(grade);
-    });
-};
 
 exports.list = function(req, res){
     Grade
@@ -81,5 +64,5 @@ exports.destroy = function(req, res) {
 };
 
 exports.show = function(req, res){
-    res.jsonp(res.grade);
+    res.jsonp(res.grade || {});
 };

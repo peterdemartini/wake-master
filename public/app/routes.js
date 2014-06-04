@@ -12,6 +12,9 @@ angular.module('main').config(['$routeProvider',
             .when('/grades', {
                 templateUrl: '/views/grades/index.html'
             })
+            .when('/grades/:gradeId', {
+                templateUrl: '/views/grades/view.html'
+            })
             .when('/dashboard', {
                 templateUrl: '/views/dashboard.html'
             })

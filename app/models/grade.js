@@ -56,6 +56,18 @@ GradeSchema
     return config.grades[this.grade] || config.grades.U;
 });
 
+GradeSchema
+.virtual('minutes')
+.get(function() {
+    return  Math.round((moment(this.start).unix() - moment(this.end).unix()) * 60);
+});
+
+GradeSchema
+.virtual('seconds')
+.get(function() {
+    return moment(this.start).unix() - moment(this.end).unix();
+});
+
 GradeSchema.methods = {
     calculate : function() {
         var snzs = this.snoozes;

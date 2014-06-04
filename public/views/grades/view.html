@@ -1,0 +1,30 @@
+<div ng-controller="GradesCtrl" ng-init="findOne()">
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="clearfix"></div>
+                    <h2>Grades</h2>
+
+                    <div class="grade well" ng-show="grade && grade.lengths">
+                        <strong class="letter">{{ grade.grade }}</strong>
+                         {{ grade.motivation }}
+                        <strong style="float: right;">{{ grade.minutes }} : {{ grade.seconds }}</strong>
+                        <br /><br />
+                    	<strong>Snooze Count</strong>: {{ grade.snoozes }} <i style="float: right;">{{ grade.created }}</i>
+                    </div>
+                    <h2 ng-show="!grades || !grades.length"><span class="label label-default" >Couldn't find that grade.</span></h2>
+                    <h2 ng-show="errorMsg"><span class="label label-default" >{{ errorMsg }}</span></h2>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+</div>
