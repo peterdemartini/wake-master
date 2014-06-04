@@ -12,11 +12,13 @@
                     <div class="grades listbox">
                     	<ul>
                         	<li class="grade" ng-repeat="grade in grades">
-                                <strong class="letter">{{ grade.grade }}</strong>
-                                 {{ grade.motivation }}
-                                <strong style="float: right;">{{ grade.minutes }} : {{ grade.seconds }}</strong>
-                                <br /><br />
-                            	<strong>Snooze Count</strong>: {{ grade.snoozes }} <i style="float: right;">{{ grade.created }}</i>
+                                <span ng-click="goToGrade(grade)">
+                                    <strong class="letter">{{ grade.grade }}</strong>
+                                     {{ grade.motivation }}
+                                    <strong style="float: right;">{{ grade.minutes }} : {{ grade.seconds }}</strong>
+                                    <br /><br />
+                                	<strong>Snooze Count</strong>: {{ grade.snoozes }} <i style="float: right;">{{ grade.created | date:'medium' }}</i>
+                                </span>
                         	</li>
                     	</ul>
                     </div>

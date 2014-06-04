@@ -15,7 +15,8 @@ module.exports = function(app) {
     app.route('/grades')
         .get(grades.list)
         .post(md.auth, grades.create);
-    app.route('/grades/:articleId')
+
+    app.route('/grades/:gradeId')
         .get(grades.show)
         .delete(md.auth, hasAuthorization, grades.destroy);
 

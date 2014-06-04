@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 
 
 exports.grade = function(req, res, next, id) {
-    Grade.load(id, function(err, grade) {
+    Grade.findById(id, function(err, grade) {
         if (err) return next(err);
         if (!grade) return next(new Error('Failed to load grade ' + id));
         req.grade = grade;
@@ -64,5 +64,5 @@ exports.destroy = function(req, res) {
 };
 
 exports.show = function(req, res){
-    res.jsonp(res.grade || {});
+    res.jsonp(req.grade || {});
 };

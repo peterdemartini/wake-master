@@ -12,7 +12,6 @@ var mongoose = require('mongoose'),
 var GradeSchema = new Schema({
     grade : {
         type: String,
-        required: true,
         enum :[
             'A',
             'B',
@@ -47,6 +46,13 @@ var GradeSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     }
+}, {
+    toObject: {
+      virtuals: true
+    },
+    toJSON: {
+      virtuals: true
+    }
 });
 
 // Set virtual password
@@ -66,6 +72,11 @@ GradeSchema
 .virtual('seconds')
 .get(function() {
     return moment(this.start).unix() - moment(this.end).unix();
+});
+
+GradeSchema.pre('save', function(next){
+    this.grade = this.calculate();
+    next();
 });
 
 GradeSchema.methods = {

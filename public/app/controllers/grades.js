@@ -28,5 +28,9 @@ angular.module('main.grades')
                     $scope.grade = res;
                 });
             };
+
+            $scope.goToGrade = function(grade){
+                $location.path('/grades/' + grade._id);
+            };
         }
     ]);
