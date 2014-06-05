@@ -29,7 +29,7 @@ angular.module('main.users')
                                 window.location = response.redirect;
                             }
                         } else {
-                            $location.url('/');
+                            $location.path('/dashboard');
                         }
                     })
                     .error(function () {
@@ -52,7 +52,7 @@ angular.module('main.users')
                     .success(function() {
                         // authentication OK
                         $scope.signupError = 0;
-                        $location.url('/');
+                        $location.path('/dashboard');
                     })
                     .error(function(error) {
                         $scope.signupError = error;
