@@ -18,8 +18,8 @@ var GradeSchema = new Schema({
             'C',
             'D',
             'F',
-            'I',
-            'U'
+            'I', // Incomplete
+            'U'  // Unknown
         ]
     },
     snoozes : {
@@ -41,6 +41,10 @@ var GradeSchema = new Schema({
         type : Date,
         required : true,
         default : Date.now
+    },
+    alarm: {
+        type: Schema.ObjectId,
+        ref: 'Alarm'
     },
     user: {
         type: Schema.ObjectId,
