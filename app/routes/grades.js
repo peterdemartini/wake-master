@@ -4,7 +4,7 @@ var md = require('../middlewares/index'),
     grades = require('../controllers/grades');
 
 var hasAuthorization = function(req, res, next) {
-    if (req.grades.user.id !== req.user.id) {
+    if (req.grades.user._id !== req.user._id) {
         return res.send(401, 'User is not authorized');
     }
     next();

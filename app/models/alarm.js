@@ -14,6 +14,10 @@ var AlarmSchema = new Schema({
         required : true,
         default : ''
     },
+    active : {
+        type : Boolean,
+        default : true
+    },
     // Days of the week you want it to trigger [1,2,3,4,5,6,7]
     days : [{
         type : Number,
@@ -49,6 +53,10 @@ var AlarmSchema = new Schema({
         type : Date,
         default : Date.now
     }],
+    created : {
+        type : Date,
+        default : Date.now
+    },
     user: {
         type: Schema.ObjectId,
         ref: 'User'

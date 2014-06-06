@@ -8,7 +8,9 @@ var mongoose = require('mongoose'),
 
 
 exports.alarm = function(req, res, next, id) {
-    Alarm.findById(id, function(err, alarm) {
+    Alarm.findById(id)
+    .populate('user')
+    .exec(function(err, alarm) {
         if (err) return next(err);
         if (!alarm) return next(new Error('Failed to load alarm ' + id));
         req.alarm = alarm;
@@ -33,7 +35,7 @@ exports.create = function(req, res){
 
 exports.edit = function(req, res){
     var alarm = req.alarm;
-    
+
     alarm = _.extend(alarm, req.body);
 
     alarm.save(function(err){
@@ -50,7 +52,9 @@ exports.edit = function(req, res){
 
 exports.list = function(req, res){
     Alarm
-    .find({})
+    .find({
+        user : req.user
+    })
     .limit(20)
     .exec(function(err, alarms){
         if(err){

@@ -4,7 +4,7 @@ var md = require('../middlewares/index'),
     alarms = require('../controllers/alarms');
 
 var hasAuthorization = function(req, res, next) {
-    if (req.alarms.user.id !== req.user.id) {
+    if (req.alarm.user._id.toString() !== req.user._id.toString()) {
         return res.send(401, 'User is not authorized');
     }
     next();
@@ -13,7 +13,7 @@ var hasAuthorization = function(req, res, next) {
 module.exports = function(app) {
 
     app.route('/alarms')
-        .get(alarms.list)
+        .get(md.auth, alarms.list)
         .post(md.auth, alarms.create);
 
     app.route('/alarms/:alarmId')

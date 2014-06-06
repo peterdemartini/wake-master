@@ -5,36 +5,11 @@ angular.module('main.alarm')
         function ($scope, $routeParams, $http, $location, Global) {
             $scope.global = Global;
 
-            $scope.find = function(){
-                $http.get('/alarms')
-                .success(function(res){
-                    if(res.error) {
-                        $scope.errorMsg = res.error;
-                        return;
-                    }
-                    $scope.alarms = res;
-                });
-            };
-
             $scope.alarmId = null;
 
             $scope.creating = false;
 
             $scope.alarms = [];
-
-            $scope.update = function(){
-                $http.put(
-                    '/alarms'+ $scope.alarmId,
-                    $scope.alarm
-                )
-                .success(function(res){
-                    if(res.error) {
-                        $scope.errorMsg = res.error;
-                        return;
-                    }
-                    $scope.alarm = res;
-                });
-            };
 
             $scope.days = [
                 {
@@ -67,26 +42,30 @@ angular.module('main.alarm')
                 }
             ];
 
+            $scope.hours = [];
 
-            $scope.isAlarm = function(alarm){
-                if(alarm._id && alarm._id === $scope.alarmId)
-                    return true;
-                else if(!alarm._id && $scope.creating)
-                    return true;
-                return false;
-            };
+            for(var hour = 0; hour < 24; hour++)
+                $scope.hours.push({
+                    value : hour,
+                    label : hour < 10 ? '0' + hour : hour
+                });
 
-            $scope.create = function(){
-                $http.post(
-                    '/alarms',
-                    $scope.alarm
-                )
+            $scope.minutes = [];
+
+            for(var min = 0; min < 60; min++)
+                $scope.minutes.push({
+                    value : min,
+                    label : min < 10 ? '0' + min : min
+                });
+
+            $scope.find = function(){
+                $http.get('/alarms')
                 .success(function(res){
                     if(res.error) {
                         $scope.errorMsg = res.error;
                         return;
                     }
-                    $scope.alarm = res;
+                    $scope.alarms = res;
                 });
             };
 
@@ -109,8 +88,80 @@ angular.module('main.alarm')
                 });
             };
 
+            $scope.update = function(){
+                if($scope.creating) return $scope.create();
+                var alarm = $scope.alarm;
+
+                if(!alarm.udpated || !alarm.updated.length) alarm.updated = [];
+
+                alarm.updateds.push(new Date());
+
+                $http.put(
+                    '/alarms/'+ $scope.alarmId,
+                    alarm
+                )
+                .success(function(res){
+                    if(res.error) {
+                        $scope.errorMsg = res.error;
+                        return;
+                    }
+                    $scope.alarm = res;
+                });
+            };
+
+            $scope.create = function(){
+
+                var alarm = $scope.alarm;
+
+                $http.post(
+                    '/alarms',
+                    alarm
+                )
+                .success(function(res){
+                    if(res.error) {
+                        $scope.errorMsg = res.error;
+                        return;
+                    }
+                    $scope.alarm = res;
+                });
+
+            };
+
+            $scope.delete = function(){
+
+                $http.delete(
+                    '/alarms/'+ $scope.alarmId
+                )
+                .success(function(res){
+                    if(res.error) {
+                        $scope.errorMsg = res.error;
+                        return;
+                    }
+                    for(var x in $scope.alarms){
+                        var alarm = $scope.alarms[x];
+                        if(alarm._id === $scope.alarmId){
+                            delete $scope.alarms[x];
+                            break;
+                        }
+                    }
+                    $scope.alarmId = null;
+                    $scope.alarm = null;
+                });
+
+            };
+
+            $scope.isAlarm = function(alarm){
+                if(!alarm) return false;
+                if(alarm._id && alarm._id === $scope.alarmId)
+                    return true;
+                else if(!alarm._id && $scope.creating)
+                    return true;
+                else
+                    return false;
+            };
+
             $scope.addAlarm = function(){
-                
+
                 if($scope.creating) return;
 
                 $scope.creating = true;

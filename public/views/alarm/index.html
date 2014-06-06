@@ -1,4 +1,4 @@
-<div ng-controller="AlarmCtrl" ng-init="init()">
+<div ng-controller="AlarmCtrl" ng-init="find()">
     <div class="content-section-a">
 
         <div class="container">
@@ -6,24 +6,27 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="clearfix"></div>
-                    <h2>Alarm</h2>
+                    <h1>Manage Alarms</h1>
                     <div ng-show="alarm && alarm.length">
                         <p><strong>Status:</strong> online</p>
                         <p><strong>Last Triggered:</strong> 01/23/12</p>
                     </div>
-                    <div ng-show="!alarm || !alarm.length">
-                        <ul class="list-group">
-                            <li class="list-group-item"
-                                ng-click="findOne(alarm)"
-                                ng-repeat="alarm in alarms">
-                                <a href="#" ng-class="{'active' : isAlarm(alarm) }">
-                                    {{ alarm.name }}
-                                </a>
-                            </li>
-                            <li class="list-group-item" ng-click="addAlarm()">
-                                Create
-                            </li>
-                        </ul>
+                    <div class="col-lg-10 " ng-show="!alarm || !alarm.length">
+                        <div class="col-lg-2">
+                            Alarms
+                        </div>
+                        <div class="col-lg-10">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-click="findOne(alarm)" ng-repeat="alarm in alarms">
+                                    <a href="" ng-class="{'active' : isAlarm(alarm) }">
+                                        {{ alarm.name }}
+                                    </a>
+                                </li>
+                                <li class="list-group-item" ng-click="addAlarm()">
+                                    Create
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,18 +44,64 @@
                 <div class="col-lg-12">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Settings</h2>
+                    <form class="form-horizontal col-lg-12" name="SettingForm" role="form" ng-submit="update()" novalidate>
 
-                    <div class="btn-group" role="toolbar">
-                        <div class="btn btn-default"
-                             ng-click="selectDay(day.day)"
-                             ng-class="{'active' : alarm.days.indexOf(day.day) > -1 }"
-                             ng-repeat="day in days">
-                             {{ day.label }}
-                         </div>
-                    </div>
+                        <div class="form-group" ng-class="{'has-success': SettingForm.name.$valid, 'has-error': SettingForm.name.$invalid}">
+                            <label for="name" class="col-lg-2 control-label">
+                                Alarm Name<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="name" ng-pattern="/^[\w\-\s\,\/\&]{3,75}$/" ng-model="alarm.name" id="name" placeholder="Name" value="{{experience.name}}" required>
+                                <p class="help-block" ng-show="!alarm.name || alarm.name.length < 3 || alarm.name.length > 75">The current length of {{ alarm.name.length }} is not within the valid range of 3 and 75.</p>
+                                <p class="help-block" ng-show="SettingForm.name.$invalid">The name field cannot contain anything other than A-Z, a-z 0-9, "_", "-", ",", "/", "&", "'" and spaces.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-12" ng-class="{'has-success': alarm.days.length, 'has-error': !alarm.days.length}">
+                            <label for="days" class="col-lg-2 control-label">
+                                Days of the Week
+                            </label>
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <div class="btn-group" role="toolbar">
+                                    <div class="btn btn-default" ng-click="selectDay(day.day)" ng-class="{'active' : alarm.days.indexOf(day.day) > -1 }" ng-repeat="day in days">
+                                        {{ day.label }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                            ng-class="{ 'has-success': SettingForm.hour.$valid && SettingForm.minute.$valid, 'has-error': SettingForm.hour.$invalid && SettingForm.minute.$invalid }">
+                            <label for="hour" class="col-lg-2 control-label">
+                                Hour <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-2">
+                                <select class="col-lg-12" ng-model="alarm.hour" ng-options="hour.value as hour.label for hour in hours">
+                                </select>
+                            </div>
+
+                            <label for="minute" class="col-lg-1 control-label">
+                                Minute <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-2">
+                                <select class="col-lg-12" ng-model="alarm.minute" ng-options="minute.value as minute.label for minute in minutes">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <hr>
+                                <button type="submit" class="btn btn-primary" ng-disabled="SettingForm.$invalid">Submit</button>
+                                <button type="button" class="btn btn-danger" ng-disabled="creating" ng-click="delete()">Delete</button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
-
+            <!-- /.row -->
         </div>
         <!-- /.container -->
 
@@ -60,3 +109,4 @@
     <!-- /.content-section-b -->
 
 </div>
+<!-- /.ng-controller -->
