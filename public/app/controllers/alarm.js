@@ -94,7 +94,7 @@ angular.module('main.alarm')
 
                 if(!alarm.udpated || !alarm.updated.length) alarm.updated = [];
 
-                alarm.updateds.push(new Date());
+                alarm.updated.push(new Date());
 
                 $http.put(
                     '/alarms/'+ $scope.alarmId,
