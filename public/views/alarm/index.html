@@ -43,15 +43,25 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Settings</h2>
                     <form class="form-horizontal col-lg-12" name="SettingForm" role="form" ng-submit="update()" novalidate>
+
+                        <h2 class="section-heading">Settings</h2>
+
+                        <div class="form-group has-success">
+                            <label for="active" class="col-lg-1 col-lg-offset-1 control-label">
+                                Active
+                            </label>
+                            <div class="col-lg-1">
+                                <input type="checkbox" class="col-lg-1 form-control" ng-model="alarm.active" name="active">
+                            </div>
+                        </div>
 
                         <div class="form-group" ng-class="{'has-success': SettingForm.name.$valid, 'has-error': SettingForm.name.$invalid}">
                             <label for="name" class="col-lg-2 control-label">
                                 Alarm Name<span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" name="name" ng-pattern="/^[\w\-\s\,\/\&]{3,75}$/" ng-model="alarm.name" id="name" placeholder="Name" value="{{experience.name}}" required>
+                                <input type="text" class="form-control" name="name" ng-pattern="/^[\w\-\s\,\/\&]{3,75}$/" ng-model="alarm.name" id="name" placeholder="Name" value="{{alarm.name}}" required>
                                 <p class="help-block" ng-show="!alarm.name || alarm.name.length < 3 || alarm.name.length > 75">The current length of {{ alarm.name.length }} is not within the valid range of 3 and 75.</p>
                                 <p class="help-block" ng-show="SettingForm.name.$invalid">The name field cannot contain anything other than A-Z, a-z 0-9, "_", "-", ",", "/", "&", "'" and spaces.</p>
                             </div>
@@ -76,7 +86,7 @@
                                 Hour <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-2">
-                                <select class="col-lg-12" ng-model="alarm.hour" ng-options="hour.value as hour.label for hour in hours">
+                                <select class="col-lg-12 form-control" ng-model="alarm.hour" ng-options="hour.value as hour.label for hour in hours">
                                 </select>
                             </div>
 
@@ -84,8 +94,43 @@
                                 Minute <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-2">
-                                <select class="col-lg-12" ng-model="alarm.minute" ng-options="minute.value as minute.label for minute in minutes">
+                                <select class="col-lg-12 form-control"  ng-model="alarm.minute" ng-options="minute.value as minute.label for minute in minutes">
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="snooze" class="col-lg-1 col-lg-offset-1 control-label">
+                                Snooze
+                            </label>
+                            <div class="col-lg-1">
+                                <input type="checkbox" class="col-lg-1 form-control" ng-model="alarm.snooze" name="snooze">
+                            </div>
+
+                            <label for="brightness" class="col-lg-1 control-label">
+                                Brightness
+                            </label>
+                            <div class="col-lg-1">
+                                <input type="number" class="form-control" ng-model="alarm.brightness" name="brightness">
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-success': SettingForm.skynet_uuid.$valid, 'has-error': SettingForm.skynet_uuid.$invalid}">
+                            <label for="skynet_uuid" class="col-lg-2 control-label">
+                                Skynet UUID<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="skynet_uuid" ng-model="alarm.skynet_uuid" id="skynet_uuid" placeholder="Skynet UUID" value="{{alarm.skynet_uuid}}" >
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-success': SettingForm.skynet_token.$valid, 'has-error': SettingForm.skynet_token.$invalid}">
+                            <label for="skynet_token" class="col-lg-2 control-label">
+                                Skynet Token<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="skynet_token" ng-model="alarm.skynet_token" id="skynet_token" placeholder="Skynet Token" value="{{alarm.skynet_token}}">
                             </div>
                         </div>
 

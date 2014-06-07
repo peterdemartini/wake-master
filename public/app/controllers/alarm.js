@@ -66,6 +66,10 @@ angular.module('main.alarm')
                         return;
                     }
                     $scope.alarms = res;
+                    if($scope.alarms && $scope.alarms.length){
+                        $scope.alarm = $scope.alarms[0];
+                        $scope.alarmId = $scope.alarm._id;
+                    }
                 });
             };
 

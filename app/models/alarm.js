@@ -41,6 +41,10 @@ var AlarmSchema = new Schema({
         type : Boolean,
         default : true
     },
+    brightness : {
+        type : Number,
+        default : 0
+    },
     skynet_uuid : {
         type : String,
         default : ''
