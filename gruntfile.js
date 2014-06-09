@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             js: {
-                files: ['gruntfile.js', 'index.js', 'app/**/*.js', 'public/app/**', 'app/views/*','test/*.js'],
+                files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/app/**', 'app/views/*','test/*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true,
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         },
         jshint: {
             all: {
-                src: ['gruntfile.js', 'index.js', 'app/**/*.js', 'public/app/**', 'test/*.js'],
+                src: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/app/**', 'test/*.js'],
                 options: {
                     jshintrc: true,
                     ignores: [
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
         },
         nodemon: {
             dev: {
-                script: 'index.js',
+                script: 'server.js',
                 options: {
                     args: [],
                     ignore: ['public/**'],

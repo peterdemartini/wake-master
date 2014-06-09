@@ -1,0 +1,55 @@
+<div ng-controller="IndexCtrl">
+    <div class="intro-header">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Edit Profile</h1>
+                    <form class="form-horizontal col-md-12" name="ProfileForm" role="form" ng-submit="update()" novalidate>
+                        <div class="col-md-10 col-md-offset-2">
+                            <div class="form-group" ng-class="{'has-success': ProfileForm.name.$valid, 'has-error': ProfileForm.name.$invalid}">
+                                <label for="name" class="col-md-2 control-label">
+                                    Name<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="text" ng-pattern="/^[\w\-\s\.\,]{3,75}$/" class="form-control" name="name" ng-model="profile.name" id="name" placeholder="Name" value="{{profile.name}}" required>
+                                    <p class="help-block" ng-show="!profile.name || profile.name.length < 3 || profile.name.length > 75">The current length of {{ profile.name.length }} is not within the valid range of 3 and 75.</p>
+                                    <p class="help-block" ng-show="ProfileForm.name.$invalid">The name field cannot contain anything other than A-Z, a-z 0-9, "_", "-", ",", "." and spaces.</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-success': ProfileForm.username.$valid, 'has-error': ProfileForm.username.$invalid}">
+                                <label for="username" class="col-md-2 control-label">
+                                    Username<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="text" ng-pattern="/^[\w\-]{3,32}$/" class="form-control" name="username" ng-model="profile.username" id="username" placeholder="Username" value="{{profile.username}}" required>
+                                    <p class="help-block" ng-show="!profile.username || profile.username.length < 3 || profile.username.length > 32">The current length of {{ profile.username.length }} is not within the valid range of 3 and 32.</p>
+                                    <p class="help-block" ng-show="ProfileForm.username.$invalid">The name field cannot contain anything other than A-Z, a-z 0-9, "_" and "-".</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-success': ProfileForm.email.$valid, 'has-error': ProfileForm.email.$invalid}">
+                                <label for="email" class="col-md-2 control-label">
+                                    Email<span class="text-danger">*</span>
+                                </label>
+                                <div class="col-md-10">
+                                    <input type="email" class="form-control" name="email" ng-model="profile.email" id="email" placeholder="email" value="{{profile.email}}" required>
+                                    <p class="help-block" ng-show="ProfileForm.email.$invalid">Incorrect email address format.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container -->
+
+</div>
+<!-- /.intro-header -->
+</div>
