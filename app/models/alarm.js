@@ -79,6 +79,7 @@ AlarmSchema
 .virtual('next')
 .get(function() {
     // TODO
+    if(!this.active) return null;
     return moment();
 });
 

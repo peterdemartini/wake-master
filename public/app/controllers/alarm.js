@@ -78,6 +78,9 @@ angular.module('main.alarm')
                 if(!$scope.alarmId) {
                     if($scope.creating){
                         $scope.alarm = alarm;
+                    }else{
+                        $scope.creating = true;
+                        $scope.alarm = alarm;
                     }
                     return;
                 }
@@ -95,6 +98,9 @@ angular.module('main.alarm')
             $scope.update = function(){
                 if($scope.creating) return $scope.create();
                 var alarm = $scope.alarm;
+
+                alarm.active = !!alarm.active;
+                alarm.snooze = !!alarm.snooze;
 
                 if(!alarm.udpated || !alarm.updated.length) alarm.updated = [];
 
@@ -116,6 +122,9 @@ angular.module('main.alarm')
             $scope.create = function(){
 
                 var alarm = $scope.alarm;
+
+                alarm.active = !!alarm.active;
+                alarm.snooze = !!alarm.snooze;
 
                 $http.post(
                     '/alarms',
