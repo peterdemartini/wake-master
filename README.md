@@ -41,4 +41,4 @@ For these instructions we will be using the [Alarm Clock Five](http://shop.evilm
 1. Purchase [Alarm Clock Five](https://www.adafruit.com/products/620)
 2. Build the clock following the [instructions](http://shop.emscdn.com/KitInstrux/alphaclock/alphaclockv.assy15.pdf)
 
-**The rest of the instructions comming soon.**
+**The rest of the instructions coming soon.**
