@@ -153,10 +153,11 @@ angular.module('main.alarm')
                     for(var x in $scope.alarms){
                         var alarm = $scope.alarms[x];
                         if(alarm._id === $scope.alarmId){
-                            delete $scope.alarms[x];
+                            $scope.alarms.splice(x, 1);
                             break;
                         }
                     }
+                    console.log($scope.alarms);
                     $scope.alarmId = null;
                     $scope.alarm = null;
                 });

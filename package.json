@@ -1,6 +1,6 @@
 {
   "name": "wake-master",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An #IoT Alarm Clock powered by Skynet.im and Node.js",
   "main": "index.js",
   "scripts": {
